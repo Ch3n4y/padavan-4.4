@@ -4,6 +4,7 @@
 PROG=/usr/bin/zerotier-one
 PROGCLI=/usr/bin/zerotier-cli
 PROGIDT=/usr/bin/zerotier-idtool
+planet_path=/usr/bin/planet
 config_path="/etc/storage/zerotier-one"
 start_instance() {
 	cfg="$1"
@@ -15,6 +16,7 @@ start_instance() {
 	enablemoonserv="$(nvram get zerotiermoon_enable)"
 	if [ ! -d "$config_path" ]; then
 		mkdir -p $config_path
+		mv $planet_path $config_path
 	fi
 	mkdir -p $config_path/networks.d
 	if [ -n "$port" ]; then
